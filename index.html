@@ -3,44 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IXH – UI Test</title>
+<title>IXH – Integrated eXecution Hub</title>
 
 <style>
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  color: white;
+  color: #fff;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+}
+
+.header img {
+  height: 52px;
+}
+
+.panel {
+  max-width: 640px;
+  margin: 40px auto;
+  background: rgba(0,0,0,0.35);
+  border-radius: 20px;
+  padding: 32px;
+  backdrop-filter: blur(10px);
   text-align: center;
-  padding-top: 40px;
 }
 
-h1 {
-  font-size: 32px;
+.clock {
+  font-size: 30px;
+  margin-bottom: 24px;
+  letter-spacing: 2px;
 }
 
-p {
-  opacity: 0.8;
+.mode {
+  margin-bottom: 28px;
 }
 
-button {
-  padding: 20px 30px;
-  font-size: 20px;
-  border: none;
+.mode button {
+  padding: 14px 32px;
+  font-size: 18px;
   border-radius: 12px;
-  margin: 10px;
+  border: none;
+  margin: 0 12px;
+}
+
+.auto { background: #1abc9c; }
+.manual { background: #f39c12; }
+
+.relays {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.relay {
+  padding: 22px;
+  font-size: 18px;
+  border-radius: 14px;
+  border: none;
+  background: #bdc3c7;
+  color: #000;
+}
+
+.relay.on {
+  background: #2ecc71;
 }
 </style>
 </head>
 
 <body>
 
-<h1>IXH</h1>
-<p>Integrated eXecution Hub</p>
+<div class="header">
+  <img src="logo.png" alt="IXH logo">
+</div>
 
-<button>PRZEKAŹNIK 1</button>
-<button>PRZEKAŹNIK 2</button>
-<button>PRZEKAŹNIK 3</button>
+<div class="panel">
+  <div class="clock" id="clock">--:--:--</div>
+
+  <div class="mode">
+    <button class="auto">AUTO</button>
+    <button class="manual">MANUAL</button>
+  </div>
+
+  <div class="relays">
+    <button class="relay on">PRZEKAŹNIK 1</button>
+    <button class="relay">PRZEKAŹNIK 2</button>
+    <button class="relay">PRZEKAŹNIK 3</button>
+  </div>
+</div>
+
+<script>
+function updateClock() {
+  document.getElementById("clock").innerText =
+    new Date().toLocaleTimeString("pl-PL");
+}
+setInterval(updateClock, 1000);
+updateClock();
+</script>
 
 </body>
 </html>
